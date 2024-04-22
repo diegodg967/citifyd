@@ -10,7 +10,10 @@ export default function Home() {
   return (
     <main>
       <div>
-        <Wrapper apiKey={"YOUR_API_KEY"} render={render}></Wrapper>
+        <Wrapper
+          apiKey={process.env.GOOGLE_MAPS_API_KEY ?? ""}
+          render={render}
+        ></Wrapper>
       </div>
     </main>
   );
