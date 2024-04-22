@@ -1,7 +1,17 @@
+"use client";
+
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
 export default function Home() {
+  const render = (status: Status) => {
+    return <h1>{status}</h1>;
+  };
+
   return (
     <main>
-      <div>Content</div>
+      <div>
+        <Wrapper apiKey={"YOUR_API_KEY"} render={render}></Wrapper>
+      </div>
     </main>
   );
 }
