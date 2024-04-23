@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
-import { Map } from "@/components";
+import { MainBar, Map } from "@/components";
 import { GlobalStyle } from "@/styles/global-style";
 
 export default function Home() {
@@ -33,6 +33,7 @@ export default function Home() {
   return (
     <>
       <GlobalStyle />
+      <MainBar />
       <Wrapper
         apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
         libraries={["places"]}
