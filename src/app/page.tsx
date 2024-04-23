@@ -5,6 +5,7 @@ import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { Map } from "@/components";
+import { GlobalStyle } from "@/styles/global-style";
 
 export default function Home() {
   const [places, setPlaces] = useState([]);
@@ -30,14 +31,17 @@ export default function Home() {
   }, []);
 
   return (
-    <Wrapper
-      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
-      libraries={["places"]}
-    >
-      <Map
-      // mapId="map_id"
-      // locations={LOCATIONS}
-      />
-    </Wrapper>
+    <>
+      <GlobalStyle />
+      <Wrapper
+        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
+        libraries={["places"]}
+      >
+        <Map
+        // mapId="map_id"
+        // locations={LOCATIONS}
+        />
+      </Wrapper>
+    </>
   );
 }
