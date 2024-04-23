@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { addClusterMarkers, addSingleMarkers } from "../markers";
+import { LIGHT_STYLE } from "@/styles/map-styles";
 
-const DEFAULT_CENTER = { lat: 48.8566, lng: 2.3522 };
-const DEFAULT_ZOOM = 4;
+const DEFAULT_CENTER = { lat: -25.4471113, lng: -49.2939218 };
+const DEFAULT_ZOOM = 16;
 
 export const Map = ({
   // locations,
@@ -45,7 +46,9 @@ export const Map = ({
     if (ref.current) {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
+        mapTypeControl: false,
         zoom: DEFAULT_ZOOM,
+        styles: LIGHT_STYLE,
         // mapId,
       });
 
