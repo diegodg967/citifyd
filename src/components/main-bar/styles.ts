@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-const SPACCING = "16px";
+const SPACCING = "24px";
 
 export const StyledWrapper = styled.div`
   position: fixed;
@@ -25,4 +25,18 @@ export const StyledHeader = styled.header`
 export const StyledLogo = styled(Image)`
   width: 170px;
   height: auto;
+`;
+
+export const StyledInputWrapper = styled.div`
+  display: flex;
+  padding: 24px;
+`;
+
+export const StyledInput = styled.input`
+  display: flex;
+  align-items: center;
+  height: 44px;
+  width: 100%;
+  padding: 0 16px;
+  border: 1px solid #dedede;
 `;

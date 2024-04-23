@@ -46,9 +46,11 @@ export const Map = ({
     if (ref.current) {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
+        fullscreenControl: false,
         mapTypeControl: false,
-        zoom: DEFAULT_ZOOM,
+        streetViewControl: false,
         styles: LIGHT_STYLE,
+        zoom: DEFAULT_ZOOM,
         // mapId,
       });
 
