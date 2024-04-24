@@ -4,6 +4,7 @@ import { usePlaces } from "@/context/places.context";
 
 import { FavoritesList } from "@/components/favorites-list";
 import { Header } from "@/components/header";
+import { Loader } from "@/components/loader";
 import { PlacesList } from "@/components/places-list";
 
 import { StyledInput, StyledInputWrapper, StyledWrapper } from "./styles";
@@ -59,7 +60,7 @@ export const MainBar = () => {
           />
         </StyledInputWrapper>
 
-        {isFetchingPlaces ? <div>Loading places...</div> : <PlacesList />}
+        {isFetchingPlaces ? <Loader /> : <PlacesList />}
       </>
     );
   };

@@ -19,7 +19,6 @@ export const StyledWButton = styled.button<ButtonProps>`
       return css`
         background: ${(props) => props.theme.colors.primary.main};
         border: 2px solid rgb(245, 185, 40);
-        pointer-events: none;
       `;
     }
 

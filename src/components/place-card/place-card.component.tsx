@@ -26,6 +26,13 @@ export const PlaceCard = ({ isFavorite, place }: Props) => {
   const handleAddToFavoritesClick = (event: MouseEvent) => {
     event.stopPropagation();
 
+    if (isFavorite) {
+      setFavorites((prev) =>
+        prev.filter((fav) => fav.placeId !== place.placeId)
+      );
+      return;
+    }
+
     setSelectedPlaceId(place.placeId);
     setFavorites((prev) => [...prev, place]);
   };
