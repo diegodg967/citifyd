@@ -4,13 +4,12 @@ import { StyledWButton } from "./styles";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
-  callback: () => void;
   icon: ReactNode;
 }
 
-export const SquareButton = ({ active = false, callback, icon }: Props) => {
+export const SquareButton = ({ active = false, icon, ...props }: Props) => {
   return (
-    <StyledWButton onClick={callback} $active={active}>
+    <StyledWButton $active={active} {...props}>
       {icon}
     </StyledWButton>
   );

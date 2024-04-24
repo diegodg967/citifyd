@@ -14,14 +14,14 @@ export const MenuBar = () => {
     <StyledWrapper>
       <SquareButton
         active={tab === TAB_TYPE.SEARCH}
-        callback={() => setTab(TAB_TYPE.SEARCH)}
         icon={<FiSearch size={16} />}
+        onClick={() => setTab(TAB_TYPE.SEARCH)}
         title="Search Places"
       />
       <SquareButton
         active={tab === TAB_TYPE.FAVORITES}
-        callback={() => setTab(TAB_TYPE.FAVORITES)}
         icon={<FiHeart size={16} />}
+        onClick={() => setTab(TAB_TYPE.FAVORITES)}
         title="Favorites"
       />
     </StyledWrapper>
