@@ -10,7 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const SquareButton = ({ active = false, callback, icon }: Props) => {
   return (
-    <StyledWButton onClick={callback} active={active}>
+    <StyledWButton onClick={callback} _active={active}>
       {icon}
     </StyledWButton>
   );

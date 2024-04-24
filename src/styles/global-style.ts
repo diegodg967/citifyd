@@ -5,13 +5,14 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: rgb(55, 56, 64);
   }
 
   body, button, input, select, textarea {
-    font-family: "Open Sans", sans-serif;
+    color: rgb(55, 56, 64);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", sans-serif;
+    color: rgb(55, 56, 64);
 }
 `;

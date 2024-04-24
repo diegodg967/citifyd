@@ -8,7 +8,7 @@ export const StyledWrapper = styled.header`
   width: 100%;
 
   h1 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     text-transform: uppercase;
 `;
