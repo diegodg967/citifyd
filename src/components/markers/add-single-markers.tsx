@@ -2,10 +2,11 @@ import { IPlace } from "@/types/places";
 
 interface Props {
   map: google.maps.Map | google.maps.StreetViewPanorama | undefined;
+  markerCallback: (placeId: string) => void;
   places: IPlace[];
 }
 
-export const addSingleMarkers = ({ map, places }: Props) => {
+export const addSingleMarkers = ({ map, markerCallback, places }: Props) => {
   return places.map((place) => {
     const { lat, lng } = place.position;
 
@@ -15,7 +16,7 @@ export const addSingleMarkers = ({ map, places }: Props) => {
     });
 
     marker.addListener("click", () => {
-      console.log("Marker clicked!", place.name);
+      markerCallback(place.placeId);
     });
 
     return marker;

@@ -13,8 +13,18 @@ const DEFAULT_ZOOM = 16;
 export const Map = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const { filteredFavorites, locations, places, placesTheme, tab } =
-    usePlaces();
+  const {
+    filteredFavorites,
+    locations,
+    places,
+    placesTheme,
+    setSelectedPlaceId,
+    tab,
+  } = usePlaces();
+
+  const markerCallback = (placeId: string) => {
+    setSelectedPlaceId(placeId);
+  };
 
   useEffect(() => {
     if (ref.current) {
@@ -37,7 +47,7 @@ export const Map = () => {
 
       const currentPlaces = getCurrentPlaces();
 
-      addSingleMarkers({ map, places: currentPlaces });
+      addSingleMarkers({ map, markerCallback, places: currentPlaces });
 
       if (currentPlaces.length > 0 && map) {
         const bounds = new google.maps.LatLngBounds();
@@ -66,6 +76,7 @@ export const Map = () => {
         map.fitBounds(bounds);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredFavorites, locations, places, placesTheme, ref, tab]);
 
   return (
