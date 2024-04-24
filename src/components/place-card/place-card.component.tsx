@@ -6,7 +6,7 @@ import { SquareButton } from "@/components/square-button";
 import { usePlaces } from "@/context/places.context";
 import { IPlace } from "@/types/places";
 
-import { StyledName, StyledWrapper } from "./styles";
+import { StyledDetails, StyledName, StyledRow, StyledWrapper } from "./styles";
 
 interface Props {
   isFavorite: boolean;
@@ -39,13 +39,22 @@ export const PlaceCard = ({ isFavorite, place }: Props) => {
 
   return (
     <StyledWrapper onClick={handlePlaceClick} $selected={isSelected}>
-      <StyledName>{place.name}</StyledName>
-      <SquareButton
-        active={isFavorite}
-        onClick={handleAddToFavoritesClick}
-        icon={<FiHeart size={16} color={theme.colors.text.main} />}
-        title="Add to Favorites"
-      />
+      <StyledRow>
+        <StyledName>{place.name}</StyledName>
+        <SquareButton
+          active={isFavorite}
+          onClick={handleAddToFavoritesClick}
+          icon={<FiHeart size={16} color={theme.colors.text.main} />}
+          title="Add to Favorites"
+        />
+      </StyledRow>
+      {isSelected && place.address && (
+        <StyledRow>
+          <StyledDetails>
+            <span>{place.address}</span>
+          </StyledDetails>
+        </StyledRow>
+      )}
     </StyledWrapper>
   );
 };

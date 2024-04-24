@@ -1,4 +1,5 @@
 export interface IPlaceResponse {
+  formatted_address: string;
   geometry: {
     location: google.maps.LatLngLiteral;
   };
@@ -8,6 +9,7 @@ export interface IPlaceResponse {
 }
 
 export interface IPlace {
+  address: string;
   name: string;
   placeId: string;
   position: google.maps.LatLngLiteral;

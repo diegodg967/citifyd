@@ -6,6 +6,7 @@ interface Props {
 
 export const StyledWrapper = styled.div<Props>`
   display: flex;
+  flex-direction: column;
   padding: 20px;
   border-bottom: 1px solid ${({ theme }) => theme?.colors?.border?.main};
   cursor: pointer;
@@ -20,15 +21,27 @@ export const StyledWrapper = styled.div<Props>`
     if ($selected) {
       return css`
         padding-left: 15px;
-        padding-bottom: 100px;
         border-left: 5px solid ${(props) => props.theme.colors.primary.main};
       `;
     }
   }}
 `;
 
+export const StyledRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const StyledName = styled.span`
   display: flex;
   align-items: center;
   flex: 1;
+`;
+
+export const StyledDetails = styled.div`
+  display: flex;
+  margin-top: 16px;
+  font-size: 14px;
 `;

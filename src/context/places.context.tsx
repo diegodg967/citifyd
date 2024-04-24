@@ -90,6 +90,7 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
 
       const parsedPlaces = data.map((place: IPlaceResponse) => {
         return {
+          address: place.formatted_address,
           name: place.name,
           placeId: place.place_id,
           position: place.geometry.location,
