@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 
 export const useMediaQuery = (query: string) => {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia(query).matches : null
-  );
+  const [matches, setMatches] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const mediaQuery = window.matchMedia(query);
-      const handleChange = () => setMatches(mediaQuery.matches);
+      setMatches(mediaQuery.matches); // Define o estado inicial no lado do cliente
 
+      const handleChange = () => setMatches(mediaQuery.matches);
       mediaQuery.addListener(handleChange);
-      setMatches(mediaQuery.matches);
 
       return () => {
         mediaQuery.removeListener(handleChange);
