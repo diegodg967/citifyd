@@ -39,6 +39,9 @@ interface IPlacesContextProps {
   setPlacesTheme: Dispatch<
     SetStateAction<PLACE_THEME.LIGHT | PLACE_THEME.DARK>
   >;
+
+  responsiveBarIsOpen: boolean;
+  setResponsiveBarIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const PlacesContext = createContext<IPlacesContextProps | null>(null);
@@ -61,6 +64,8 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
   const [placesTheme, setPlacesTheme] = useState<
     PLACE_THEME.LIGHT | PLACE_THEME.DARK
   >(PLACE_THEME.LIGHT);
+  const [responsiveBarIsOpen, setResponsiveBarIsOpen] =
+    useState<boolean>(false);
 
   const getLocations = () => {
     if (tab === TAB_TYPE.FAVORITES) {
@@ -71,10 +76,6 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
   };
 
   const locations = getLocations();
-
-  // useEffect(() => {
-  //   console.log("locations", locations);
-  // }, [locations]);
 
   const getPlaces = async (query: string) => {
     try {
@@ -129,6 +130,9 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
 
         placesTheme,
         setPlacesTheme,
+
+        responsiveBarIsOpen,
+        setResponsiveBarIsOpen,
       }}
     >
       {children}

@@ -1,24 +1,34 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useTheme } from "styled-components";
 
 import { usePlaces } from "@/context/places.context";
-
 import { FavoritesList } from "@/components/favorites-list";
 import { Header } from "@/components/header";
 import { Loader } from "@/components/loader";
 import { PlacesList } from "@/components/places-list";
 
-import { StyledInput, StyledInputWrapper, StyledWrapper } from "./styles";
+import {
+  StyledInput,
+  StyledInputWrapper,
+  StyledResponsiveWrapper,
+  StyledWrapper,
+} from "./styles";
 import { TAB_TYPE } from "@/enums";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { LogoBar } from "../header/logo-bar";
 
 export const MainBar = () => {
+  const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const {
     debouncedGetPlaces,
     isFetchingPlaces,
     favoritesFilter,
+    responsiveBarIsOpen,
     setFavoritesFilter,
     tab,
   } = usePlaces();
+  const isSmallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
   const handleSearchQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchedQuery = event.target.value;
@@ -65,8 +75,12 @@ export const MainBar = () => {
     );
   };
 
-  return (
-    <StyledWrapper>
+  return isSmallScreen && !responsiveBarIsOpen ? (
+    <StyledResponsiveWrapper>
+      <LogoBar />
+    </StyledResponsiveWrapper>
+  ) : (
+    <StyledWrapper $open={responsiveBarIsOpen}>
       <Header />
       {renderContent()}
     </StyledWrapper>

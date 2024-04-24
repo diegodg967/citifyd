@@ -1,9 +1,11 @@
 import { DefaultTheme } from "styled-components";
 
 const lightTheme: DefaultTheme = {
-  defaultColors: {
-    primary: "rgb(245,185,40)",
-    secondary: "rgb(55,56,64)",
+  breakpoints: {
+    xs: "480px",
+    sm: "720px",
+    md: "960px",
+    lg: "1280px",
   },
   colors: {
     primary: {
@@ -28,10 +30,6 @@ const lightTheme: DefaultTheme = {
 };
 
 const darkTheme: DefaultTheme = {
-  defaultColors: {
-    primary: "rgb(245,185,40)",
-    secondary: "rgb(55,56,64)",
-  },
   colors: {
     primary: {
       main: "rgb(245, 185, 40)",

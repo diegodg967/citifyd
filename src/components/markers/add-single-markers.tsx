@@ -1,3 +1,4 @@
+import { MARKER_URL } from "@/constants/marker";
 import { IPlace } from "@/types/places";
 
 interface Props {
@@ -11,6 +12,12 @@ export const addSingleMarkers = ({ map, markerCallback, places }: Props) => {
     const { lat, lng } = place.position;
 
     const marker = new google.maps.Marker({
+      icon: {
+        anchor: new google.maps.Point(15, 50),
+        origin: new google.maps.Point(0, 0),
+        scaledSize: new google.maps.Size(31, 25),
+        url: MARKER_URL,
+      },
       position: { lat, lng },
       map,
     });
