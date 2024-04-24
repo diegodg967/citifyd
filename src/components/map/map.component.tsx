@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { addSingleMarkers } from "@/components/markers";
 import { usePlaces } from "@/context/places.context";
@@ -7,12 +7,11 @@ import { DARK_STYLE, LIGHT_STYLE } from "@/styles/map-styles";
 import { StyledMapWrapper } from "./styles";
 import { PLACE_THEME, TAB_TYPE } from "@/enums";
 
-const DEFAULT_CENTER = { lat: -25.4471113, lng: -49.2939218 };
+const DEFAULT_CENTER = { lat: 45.5425955, lng: -122.8192058 };
 const DEFAULT_ZOOM = 16;
 
 export const Map = () => {
   const ref = useRef<HTMLDivElement | null>(null);
-
   const {
     filteredFavorites,
     locations,
