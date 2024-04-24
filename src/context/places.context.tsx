@@ -1,35 +1,57 @@
+import { createContext, useContext, useEffect, useState } from "react";
+import { debounce, DebouncedFunc, set } from "lodash";
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
-import { debounce, DebouncedFunc } from "lodash";
+
+import { IPlace, IPlaceResponse } from "@/types/places";
 
 interface PlacesProviderProps {
   children: JSX.Element;
 }
 
-interface IPlace {
-  id: string;
-}
-
 interface IPlacesContextProps {
-  places: IPlace[];
   debouncedGetPlaces: DebouncedFunc<(query: string) => Promise<void>>;
+  isFetchingPlaces: boolean;
+  locations: google.maps.LatLngLiteral[];
+  places: IPlace[];
 }
 
 const PlacesContext = createContext<IPlacesContextProps | null>(null);
 
 const PlacesProvider = ({ children }: PlacesProviderProps) => {
+  const [locations, setLocations] = useState<google.maps.LatLngLiteral[]>([]);
   const [places, setPlaces] = useState<IPlace[]>([]);
+  const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
+  const [isFetchingPlaces, setIsFetchingPlaces] = useState<boolean>(false);
 
   const getPlaces = async (query: string) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/places` || "";
+    try {
+      setIsFetchingPlaces(true);
 
-    const { data } = await axios.get(url, {
-      params: {
-        query,
-      },
-    });
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/api/places` || "";
 
-    setPlaces(data);
+      const { data } = await axios.get(url, {
+        params: {
+          query,
+        },
+      });
+
+      const parsedPlaces = data.map((place: IPlaceResponse) => {
+        return {
+          name: place.name,
+          placeId: place.place_id,
+          position: place.geometry.location,
+        };
+      });
+
+      setPlaces(parsedPlaces);
+      setLocations(
+        data.map((place: IPlaceResponse) => place.geometry.location)
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsFetchingPlaces(false);
+    }
   };
 
   const debouncedGetPlaces = debounce(getPlaces, 300);
@@ -37,8 +59,10 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
   return (
     <PlacesContext.Provider
       value={{
-        places,
         debouncedGetPlaces,
+        isFetchingPlaces,
+        locations,
+        places,
       }}
     >
       {children}

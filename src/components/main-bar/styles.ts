@@ -8,6 +8,8 @@ export const StyledWrapper = styled.div`
   top: ${SPACCING};
   left: ${SPACCING};
   z-index: 10;
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - ${SPACCING} * 2);
   width: calc(400px - ${SPACCING} * 2);
   background: white;
@@ -20,6 +22,13 @@ export const StyledHeader = styled.header`
   justify-content: center;
   height: 66px;
   background: rgb(55, 56, 64);
+`;
+
+export const StyledFavoritesBar = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background: rgb(245, 185, 40);
 `;
 
 export const StyledLogo = styled(Image)`

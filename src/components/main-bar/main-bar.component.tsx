@@ -5,16 +5,18 @@ import Logo from "@/assets/images/logo.png";
 import { usePlaces } from "@/context/places.context";
 
 import {
+  StyledFavoritesBar,
   StyledHeader,
   StyledInput,
   StyledInputWrapper,
   StyledLogo,
   StyledWrapper,
 } from "./styles";
+import { PlacesList } from "../places-list";
 
 export const MainBar = () => {
   const [query, setQuery] = useState("");
-  const { debouncedGetPlaces } = usePlaces();
+  const { debouncedGetPlaces, isFetchingPlaces } = usePlaces();
 
   const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchedQuery = event.target.value;
@@ -27,8 +29,11 @@ export const MainBar = () => {
     <StyledWrapper>
       <StyledWrapper>
         <StyledHeader>
-          <StyledLogo alt="" priority={false} src={Logo} />
+          <StyledLogo alt="" src={Logo} priority={false} />
         </StyledHeader>
+
+        <StyledFavoritesBar></StyledFavoritesBar>
+
         <StyledInputWrapper>
           <StyledInput
             onChange={handleQueryChange}
@@ -37,6 +42,8 @@ export const MainBar = () => {
             value={query}
           />
         </StyledInputWrapper>
+
+        {isFetchingPlaces ? <div>Loading places...</div> : <PlacesList />}
       </StyledWrapper>
     </StyledWrapper>
   );
