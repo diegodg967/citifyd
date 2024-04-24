@@ -2,36 +2,72 @@ import { ChangeEvent, useState } from "react";
 
 import { usePlaces } from "@/context/places.context";
 
+import { FavoritesList } from "@/components/favorites-list";
 import { Header } from "@/components/header";
 import { PlacesList } from "@/components/places-list";
 
 import { StyledInput, StyledInputWrapper, StyledWrapper } from "./styles";
+import { TAB_TYPE } from "@/enums";
 
 export const MainBar = () => {
-  const [query, setQuery] = useState("");
-  const { debouncedGetPlaces, isFetchingPlaces } = usePlaces();
+  const [searchQuery, setSearchQuery] = useState("");
+  const {
+    debouncedGetPlaces,
+    isFetchingPlaces,
+    favoritesFilter,
+    setFavoritesFilter,
+    tab,
+  } = usePlaces();
 
-  const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     const searchedQuery = event.target.value;
-    setQuery(searchedQuery);
+    setSearchQuery(searchedQuery);
 
     debouncedGetPlaces(searchedQuery);
+  };
+
+  const handleFavoritesQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const filteredFavoritesQuery = event.target.value;
+    setFavoritesFilter(filteredFavoritesQuery);
+  };
+
+  const renderContent = () => {
+    if (tab === TAB_TYPE.FAVORITES) {
+      return (
+        <>
+          <StyledInputWrapper>
+            <StyledInput
+              onChange={handleFavoritesQueryChange}
+              placeholder="Type to filter your favorites..."
+              type="text"
+              value={favoritesFilter}
+            />
+          </StyledInputWrapper>
+          <FavoritesList />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <StyledInputWrapper>
+          <StyledInput
+            onChange={handleSearchQueryChange}
+            placeholder="Type to search a place..."
+            type="text"
+            value={searchQuery}
+          />
+        </StyledInputWrapper>
+
+        {isFetchingPlaces ? <div>Loading places...</div> : <PlacesList />}
+      </>
+    );
   };
 
   return (
     <StyledWrapper>
       <Header />
-
-      <StyledInputWrapper>
-        <StyledInput
-          onChange={handleQueryChange}
-          placeholder="Type to search a place..."
-          type="text"
-          value={query}
-        />
-      </StyledInputWrapper>
-
-      {isFetchingPlaces ? <div>Loading places...</div> : <PlacesList />}
+      {renderContent()}
     </StyledWrapper>
   );
 };

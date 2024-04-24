@@ -25,6 +25,9 @@ interface IPlacesContextProps {
 
   favorites: IPlace[];
   setFavorites: Dispatch<SetStateAction<IPlace[]>>;
+  favoritesFilter: string;
+  setFavoritesFilter: Dispatch<SetStateAction<string>>;
+  filteredFavorites: IPlace[];
 
   selectedPlaceId: string | null;
   setSelectedPlaceId: Dispatch<SetStateAction<string | null>>;
@@ -36,17 +39,34 @@ interface IPlacesContextProps {
 const PlacesContext = createContext<IPlacesContextProps | null>(null);
 
 const PlacesProvider = ({ children }: PlacesProviderProps) => {
-  const [locations, setLocations] = useState<google.maps.LatLngLiteral[]>([]);
   const [places, setPlaces] = useState<IPlace[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const [isFetchingPlaces, setIsFetchingPlaces] = useState<boolean>(false);
+  const [tab, setTab] = useState<TAB_TYPE.SEARCH | TAB_TYPE.FAVORITES>(
+    TAB_TYPE.SEARCH
+  );
   const [favorites, setFavorites] = usePersistedState<IPlace[]>(
     LOCAL_STORAGE_KEYS.FAVORITES,
     []
   );
-  const [tab, setTab] = useState<TAB_TYPE.SEARCH | TAB_TYPE.FAVORITES>(
-    TAB_TYPE.SEARCH
-  );
+  const [favoritesFilter, setFavoritesFilter] = useState<string>("");
+  const filteredFavorites = favorites.filter((place) => {
+    return place.name.toLowerCase().includes(favoritesFilter.toLowerCase());
+  });
+
+  const getLocations = () => {
+    if (tab === TAB_TYPE.FAVORITES) {
+      return favorites.map((favorite) => favorite.position);
+    }
+
+    return places.map((place) => place.position);
+  };
+
+  const locations = getLocations();
+
+  // useEffect(() => {
+  //   console.log("locations", locations);
+  // }, [locations]);
 
   const getPlaces = async (query: string) => {
     try {
@@ -69,9 +89,6 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
       });
 
       setPlaces(parsedPlaces);
-      setLocations(
-        data.map((place: IPlaceResponse) => place.geometry.location)
-      );
     } catch (error) {
       console.error(error);
     } finally {
@@ -91,6 +108,9 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
 
         favorites,
         setFavorites,
+        favoritesFilter,
+        setFavoritesFilter,
+        filteredFavorites,
 
         selectedPlaceId,
         setSelectedPlaceId,

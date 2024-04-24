@@ -7,10 +7,11 @@ import { FiHeart } from "react-icons/fi";
 import { MouseEvent, MouseEventHandler } from "react";
 
 interface Props {
+  isFavorite: boolean;
   place: IPlace;
 }
 
-export const PlaceCard = ({ place }: Props) => {
+export const PlaceCard = ({ isFavorite, place }: Props) => {
   const { selectedPlaceId, setSelectedPlaceId, setFavorites } = usePlaces();
 
   const isSelected = place.placeId === selectedPlaceId;
@@ -30,7 +31,7 @@ export const PlaceCard = ({ place }: Props) => {
     <StyledWrapper onClick={handlePlaceClick} $selected={isSelected}>
       <StyledName>{place.name}</StyledName>
       <SquareButton
-        active={false}
+        active={isFavorite}
         onClick={handleAddToFavoritesClick}
         icon={<FiHeart size={16} />}
         title="Add to Favorites"
