@@ -9,7 +9,7 @@ import {
 import { debounce, DebouncedFunc, set } from "lodash";
 import axios from "axios";
 
-import { LOCAL_STORAGE_KEYS, TAB_TYPE } from "@/enums";
+import { LOCAL_STORAGE_KEYS, PLACE_THEME, TAB_TYPE } from "@/enums";
 import { usePersistedState } from "@/hooks/use-persisted-state";
 import { IPlace, IPlaceResponse } from "@/types/places";
 
@@ -34,6 +34,11 @@ interface IPlacesContextProps {
 
   tab: TAB_TYPE.SEARCH | TAB_TYPE.FAVORITES;
   setTab: Dispatch<SetStateAction<TAB_TYPE>>;
+
+  placesTheme: PLACE_THEME.LIGHT | PLACE_THEME.DARK;
+  setPlacesTheme: Dispatch<
+    SetStateAction<PLACE_THEME.LIGHT | PLACE_THEME.DARK>
+  >;
 }
 
 const PlacesContext = createContext<IPlacesContextProps | null>(null);
@@ -53,6 +58,9 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
   const filteredFavorites = favorites.filter((place) => {
     return place.name.toLowerCase().includes(favoritesFilter.toLowerCase());
   });
+  const [placesTheme, setPlacesTheme] = useState<
+    PLACE_THEME.LIGHT | PLACE_THEME.DARK
+  >(PLACE_THEME.LIGHT);
 
   const getLocations = () => {
     if (tab === TAB_TYPE.FAVORITES) {
@@ -117,6 +125,9 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
 
         tab,
         setTab,
+
+        placesTheme,
+        setPlacesTheme,
       }}
     >
       {children}

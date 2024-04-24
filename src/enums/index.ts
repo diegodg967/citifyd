@@ -6,3 +6,8 @@ export enum TAB_TYPE {
 export enum LOCAL_STORAGE_KEYS {
   FAVORITES = "favorites",
 }
+
+export enum PLACE_THEME {
+  LIGHT = "light",
+  DARK = "dark",
+}
