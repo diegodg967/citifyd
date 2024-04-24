@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Citifyd
 
-## Getting Started
+This application was built using:
 
-First, run the development server:
+- Next.js
+- Typescript
+- Styled Components
+- Context API
+- API Google Maps
+- Theme black and white
+
+<hr style="margin: 20px 0;">
+
+Demo
+
+[citifyd.vercel.app](https://citifyd.vercel.app/)
+
+<hr style="margin: 20px 0;">
+
+Screenshots (breakpoints)
+
+Large:
+
+![large](https://firebasestorage.googleapis.com/v0/b/citifyd-dad69.appspot.com/o/large.png?alt=media&token=d165522d-f1bc-420d-8a53-1dca8547b96d)
+
+<hr style="margin: 20px 0;">
+
+Medium:
+
+<img src="https://firebasestorage.googleapis.com/v0/b/citifyd-dad69.appspot.com/o/medium.png?alt=media&token=1f430308-31a4-4b72-bbe5-a8903751c465" alt="" width="600"/>
+
+<hr style="margin: 20px 0;">
+
+Small:
+
+<img src="https://firebasestorage.googleapis.com/v0/b/citifyd-dad69.appspot.com/o/small.png?alt=media&token=9c14ae3a-058c-4219-a405-d6808fb1c51e" alt="" width="320"/>
+
+<hr style="margin: 20px 0;">
+
+Clone this repository, install the last version of Node (NVM is recommended) and with your prefered package manager install the dependencies and run the application.
+
+<hr style="margin: 20px 0;">
+
+Install the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<hr style="margin: 20px 0;">
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the application:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If available it will be opened on http://localhost:3000/
