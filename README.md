@@ -7,6 +7,7 @@ This application was built using:
 - Styled Components
 - Context API
 - API Google Maps
+- Local storage
 - Theme black and white
 
 <hr style="margin: 20px 0;">
