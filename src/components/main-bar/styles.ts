@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 const SPACCING = "24px";
 
@@ -16,24 +15,13 @@ export const StyledWrapper = styled.div`
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
 `;
 
-export const StyledHeader = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 66px;
-  background: rgb(55, 56, 64);
-`;
+export const StyledLogoWrapper = styled.div``;
 
-export const StyledFavoritesBar = styled.div`
+export const StyledMenu = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
   background: rgb(245, 185, 40);
-`;
-
-export const StyledLogo = styled(Image)`
-  width: 170px;
-  height: auto;
 `;
 
 export const StyledInputWrapper = styled.div`
