@@ -1,5 +1,4 @@
 "use client";
-
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { Open_Sans } from "next/font/google";
 

@@ -5,7 +5,7 @@ import { StyledLogo, StyledWrapper } from "./styles";
 export const LogoBar = () => {
   return (
     <StyledWrapper>
-      <StyledLogo alt="" src={Logo} priority={false} />
+      <StyledLogo alt="" src={Logo} priority />
     </StyledWrapper>
   );
 };

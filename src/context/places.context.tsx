@@ -1,8 +1,16 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { debounce, DebouncedFunc, set } from "lodash";
 import axios from "axios";
 
 import { IPlace, IPlaceResponse } from "@/types/places";
+import { TAB_TYPE } from "@/enums";
 
 interface PlacesProviderProps {
   children: JSX.Element;
@@ -13,6 +21,8 @@ interface IPlacesContextProps {
   isFetchingPlaces: boolean;
   locations: google.maps.LatLngLiteral[];
   places: IPlace[];
+  tab: TAB_TYPE.SEARCH | TAB_TYPE.FAVORITES;
+  setTab: Dispatch<SetStateAction<TAB_TYPE>>;
 }
 
 const PlacesContext = createContext<IPlacesContextProps | null>(null);
@@ -22,6 +32,9 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
   const [places, setPlaces] = useState<IPlace[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const [isFetchingPlaces, setIsFetchingPlaces] = useState<boolean>(false);
+  const [tab, setTab] = useState<TAB_TYPE.SEARCH | TAB_TYPE.FAVORITES>(
+    TAB_TYPE.SEARCH
+  );
 
   const getPlaces = async (query: string) => {
     try {
@@ -63,6 +76,8 @@ const PlacesProvider = ({ children }: PlacesProviderProps) => {
         isFetchingPlaces,
         locations,
         places,
+        tab,
+        setTab,
       }}
     >
       {children}
