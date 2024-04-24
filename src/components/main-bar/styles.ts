@@ -11,7 +11,7 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   height: calc(100vh - ${SPACCING} * 2);
   width: calc(400px - ${SPACCING} * 2);
-  background: white;
+  background: ${({ theme }) => theme?.colors?.background?.main};
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -35,5 +35,6 @@ export const StyledInput = styled.input`
   height: 44px;
   width: 100%;
   padding: 0 16px;
-  border: 1px solid #dedede;
+  border: 1px solid ${({ theme }) => theme?.colors?.border?.main};
+  background: ${({ theme }) => theme?.colors?.background?.hover};
 `;

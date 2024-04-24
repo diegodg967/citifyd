@@ -17,7 +17,7 @@ const openSans = Open_Sans({
   subsets: ["latin"],
 });
 
-export const Template = ({ children }: Props) => {
+export const CustomThemeProvider = ({ children }: Props) => {
   const { placesTheme } = usePlaces();
 
   return (

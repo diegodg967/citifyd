@@ -17,7 +17,7 @@ export const StyledWButton = styled.button<ButtonProps>`
   ${({ $active }) => {
     if ($active) {
       return css`
-        background: rgb(245, 185, 40);
+        background: ${(props) => props.theme.colors.primary.main};
         border: 2px solid rgb(245, 185, 40);
         pointer-events: none;
       `;

@@ -14,5 +14,5 @@ export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-top: 1px solid #dedede;
+  border-top: 1px solid ${({ theme }) => theme?.colors?.border?.main};
 `;

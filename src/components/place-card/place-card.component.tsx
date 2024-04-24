@@ -1,10 +1,12 @@
+import { MouseEvent } from "react";
+import { useTheme } from "styled-components";
+import { FiHeart } from "react-icons/fi";
+
+import { SquareButton } from "@/components/square-button";
 import { usePlaces } from "@/context/places.context";
 import { IPlace } from "@/types/places";
 
 import { StyledName, StyledWrapper } from "./styles";
-import { SquareButton } from "..";
-import { FiHeart } from "react-icons/fi";
-import { MouseEvent, MouseEventHandler } from "react";
 
 interface Props {
   isFavorite: boolean;
@@ -12,6 +14,7 @@ interface Props {
 }
 
 export const PlaceCard = ({ isFavorite, place }: Props) => {
+  const theme = useTheme();
   const { selectedPlaceId, setSelectedPlaceId, setFavorites } = usePlaces();
 
   const isSelected = place.placeId === selectedPlaceId;
@@ -33,7 +36,7 @@ export const PlaceCard = ({ isFavorite, place }: Props) => {
       <SquareButton
         active={isFavorite}
         onClick={handleAddToFavoritesClick}
-        icon={<FiHeart size={16} />}
+        icon={<FiHeart size={16} color={theme.colors.text.main} />}
         title="Add to Favorites"
       />
     </StyledWrapper>

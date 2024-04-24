@@ -2,14 +2,16 @@
 
 import { Wrapper } from "@googlemaps/react-wrapper";
 
-import { MainBar, Map } from "@/components";
+import { MainBar } from "@/components/main-bar";
+import { Map } from "@/components/map";
 import { PlacesProvider } from "@/context/places.context";
 import { GlobalStyle } from "@/styles/global-style";
+import { CustomThemeProvider as ThemeProvider } from "@/context/theme.context";
 
 export default function Home() {
   return (
     <PlacesProvider>
-      <>
+      <ThemeProvider>
         <GlobalStyle />
         <MainBar />
         <Wrapper
@@ -18,7 +20,7 @@ export default function Home() {
         >
           <Map />
         </Wrapper>
-      </>
+      </ThemeProvider>
     </PlacesProvider>
   );
 }
