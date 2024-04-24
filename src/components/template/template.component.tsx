@@ -7,7 +7,6 @@ import { Open_Sans } from "next/font/google";
 import { usePlaces } from "@/context/places.context";
 import { PLACE_THEME } from "@/enums";
 import { darkTheme, lightTheme } from "@/styles/theme";
-import { GlobalStyle } from "@/styles/global-style";
 
 interface Props {
   children: ReactNode;
@@ -25,7 +24,6 @@ export const Template = ({ children }: Props) => {
     <ThemeProvider
       theme={placesTheme === PLACE_THEME.LIGHT ? lightTheme : darkTheme}
     >
-      <GlobalStyle />
       <div className={openSans.className}>{children}</div>
     </ThemeProvider>
   );

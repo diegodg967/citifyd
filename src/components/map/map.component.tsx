@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 
 import { addSingleMarkers } from "@/components/markers";
 import { usePlaces } from "@/context/places.context";
-import { LIGHT_STYLE } from "@/styles/map-styles";
+import { DARK_STYLE, LIGHT_STYLE } from "@/styles/map-styles";
 
 import { StyledMapWrapper } from "./styles";
-import { TAB_TYPE } from "@/enums";
+import { PLACE_THEME, TAB_TYPE } from "@/enums";
 
 const DEFAULT_CENTER = { lat: -25.4471113, lng: -49.2939218 };
 const DEFAULT_ZOOM = 16;
@@ -13,7 +13,8 @@ const DEFAULT_ZOOM = 16;
 export const Map = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const { filteredFavorites, locations, places, tab } = usePlaces();
+  const { filteredFavorites, locations, places, placesTheme, tab } =
+    usePlaces();
 
   useEffect(() => {
     if (ref.current) {
@@ -22,7 +23,7 @@ export const Map = () => {
         fullscreenControl: false,
         mapTypeControl: false,
         streetViewControl: false,
-        styles: LIGHT_STYLE,
+        styles: placesTheme === PLACE_THEME.LIGHT ? LIGHT_STYLE : DARK_STYLE,
         zoom: DEFAULT_ZOOM,
       });
 
@@ -65,7 +66,7 @@ export const Map = () => {
         map.fitBounds(bounds);
       }
     }
-  }, [filteredFavorites, locations, places, ref, tab]);
+  }, [filteredFavorites, locations, places, placesTheme, ref, tab]);
 
   return (
     <StyledMapWrapper ref={ref} style={{ width: "100vw", height: "100vh" }} />

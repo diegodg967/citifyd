@@ -168,3 +168,174 @@ export const LIGHT_STYLE: google.maps.MapTypeStyle[] = [
     ],
   },
 ];
+
+export const DARK_STYLE: google.maps.MapTypeStyle[] = [
+  {
+    featureType: "all",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        weight: 2,
+      },
+    ],
+  },
+  {
+    featureType: "all",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        color: "#333333",
+      },
+    ],
+  },
+  {
+    featureType: "all",
+    elementType: "labels.text",
+    stylers: [
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "all",
+    stylers: [
+      {
+        color: "#1c1c1c",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#000000",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.man_made",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#000000",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "all",
+    stylers: [
+      {
+        saturation: -100,
+      },
+      {
+        lightness: 10,
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#333333",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#999999",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#000000",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "simplified",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "all",
+    stylers: [
+      {
+        color: "#163343",
+      },
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#000000",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#666666",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#000000",
+      },
+    ],
+  },
+];
