@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
-import { useTheme } from "styled-components";
 
 export const useMediaQuery = (query: string) => {
-  const theme = useTheme();
-  const [matches, setMatches] = useState(
-    () => window.matchMedia(query).matches
+  const [matches, setMatches] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia(query).matches : null
   );
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = () => setMatches(mediaQuery.matches);
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia(query);
+      const handleChange = () => setMatches(mediaQuery.matches);
 
-    mediaQuery.addListener(handleChange);
-    setMatches(mediaQuery.matches);
+      mediaQuery.addListener(handleChange);
+      setMatches(mediaQuery.matches);
 
-    return () => {
-      mediaQuery.removeListener(handleChange);
-    };
+      return () => {
+        mediaQuery.removeListener(handleChange);
+      };
+    }
   }, [query]);
 
   return matches;

@@ -27,7 +27,7 @@ export const Map = () => {
   };
 
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && typeof window !== "undefined") {
       const map = new window.google.maps.Map(ref.current, {
         center: DEFAULT_CENTER,
         fullscreenControl: false,
